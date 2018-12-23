@@ -14,11 +14,15 @@ Claw is a name for another command-line tool project that never saw it past the 
 
 ### Linux
 
-> apt install claw
+```bash
+apt install claw
+```
 
 ### MacOS
 
-> brew install claw
+```bash
+brew install claw
+```
 
 Claw uses what is defined as `$EDITOR` so be sure to configure this.
 
@@ -33,45 +37,63 @@ Claw uses what is defined as `$EDITOR` so be sure to configure this.
 
 ### Initialise Claw
 
-> claw init
+```bash
+claw init
+```
 
 Create directory at `$HOME/.claw`.
 
 ### Display help
 
-> claw help
+```bash
+claw help
+```
 
 ### Display saved commands
 
-> claw show foo/bar
+```bash
+claw show foo/bar
+```
 
 ### Save new command
 
-> claw create foo/bar
+```bash
+claw create foo/bar
+```
 
 TODO: check if path already exists
 
 ### Copy saved script to clipboard
 
-> claw show -c foo/bar
+```bash
+claw show -c foo/bar
+```
 
 ### Edit existing command
 
-> claw edit foo/bar
+```bash
+claw edit foo/bar
+```
 
 ### Search saved commands
 
-> claw search query
+```
+claw search query
+```
 
 ## Useful tips
 
 ### Save the last run command
 
-> claw create foo/bar "$(echo !!)" 
+```bash
+claw create foo/bar "$(echo !!)" 
+```
 
 ### Configure work environment
 
-> source $(claw show work/env)
+```bash
+source $(claw show work/env)
+```
 
 ### Search Claw commands
 
@@ -95,7 +117,9 @@ If using `claw create` inline, be sure to escape `$` symbols.
 
 ### Single git repository
 
-> claw git init
+```bash
+claw git init
+```
 
 Runs `git init` in `$HOME/.claw`
 
@@ -103,11 +127,15 @@ Runs `git init` in `$HOME/.claw`
 
 e.g. personal 
 
-> claw git init personal
+```bash
+claw git init personal
+```
 
 and work
 
-> claw git clone git@url/to/remote:repo.git
+```bash
+claw git clone git@url/to/remote:repo.git
+```
 
 ## Inspiration
 
