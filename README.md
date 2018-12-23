@@ -1,4 +1,27 @@
-# CLAW
+# CLAW <!-- omit in toc -->
+
+- [Aim](#aim)
+    - [What's in the name?](#whats-in-the-name)
+- [Installation](#installation)
+    - [Linux](#linux)
+    - [MacOS](#macos)
+- [Dependencies](#dependencies)
+- [API](#api)
+    - [Initialise Claw](#initialise-claw)
+    - [Display help](#display-help)
+    - [Save new command](#save-new-command)
+    - [Display saved commands](#display-saved-commands)
+    - [Edit existing command](#edit-existing-command)
+    - [Search saved commands](#search-saved-commands)
+- [Useful tips](#useful-tips)
+    - [Save the last run command](#save-the-last-run-command)
+    - [Configure work environment](#configure-work-environment)
+    - [Search Claw commands](#search-claw-commands)
+    - [Scan through Claw commands (interactively)](#scan-through-claw-commands-interactively)
+- [Git support](#git-support)
+    - [Single git repository](#single-git-repository)
+- [Inspiration](#inspiration)
+- [TODO](#todo)
 
 ## Aim
 
@@ -42,7 +65,7 @@ Claw uses what is defined as `$EDITOR` so be sure to configure this.
 claw init
 ```
 
-Create directory at `$HOME/.claw`.
+Create directory at `$HOME/.claw/_default`.
 
 ### Display help
 
@@ -95,7 +118,7 @@ TODO: Support regex. Maybe just a `ls -R | grep query` if `fzf` isn't installed?
 ### Save the last run command
 
 ```bash
-claw create foo/bar "$(echo !!)" 
+claw create foo/bar "$(echo !!)"
 ```
 
 ### Configure work environment
@@ -130,20 +153,19 @@ If using `claw create` inline, be sure to escape `$` symbols.
 claw git init
 ```
 
-Runs `git init` in `$HOME/.claw`
+Runs `git init` in `$HOME/.claw/_default/`.
 
-### Multiple git repositories
+To track another repository, run
 
-e.g. personal 
-
-```bash
-claw git init personal
-```
-
-and work
 
 ```bash
 claw git clone git@url/to/remote:repo.git
+```
+
+By default, this will clone the remote repository into `$HOME/.claw/repo/`. To provide another name use the following
+
+```bash
+claw git clone git@url/to/remote:repo.git another_name
 ```
 
 ## Inspiration
