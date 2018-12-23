@@ -6,6 +6,10 @@ A simple way to save commonly run commands or snippets.
 
 Ability to share and collaborate on commands, e.g. in a work environment.
 
+### What's in the name?
+
+Claw is a name for another command-line tool project that never saw it past the design phase. That project may still happen or eventually be merged into this tool. Recycling is cool.
+
 ## Installation
 
 ### Linux
