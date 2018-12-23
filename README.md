@@ -32,6 +32,7 @@ Claw uses what is defined as `$EDITOR` so be sure to configure this.
 * `tree`
 * `xclip`
 * `git` (optional, but recommended)
+* `fzf` (optional, better search functionality)
 
 ## API
 
@@ -49,12 +50,6 @@ Create directory at `$HOME/.claw`.
 claw help
 ```
 
-### Display saved commands
-
-```bash
-claw show foo/bar
-```
-
 ### Save new command
 
 ```bash
@@ -63,10 +58,22 @@ claw create foo/bar
 
 TODO: check if path already exists
 
-### Copy saved script to clipboard
+### Display saved commands
+
+```bash
+claw show foo/bar
+```
+
+Add the `-c` flag to copy the command directly to the clipboard.
 
 ```bash
 claw show -c foo/bar
+```
+
+Use the `-p` flag to display the full path to the saved command.
+
+```bash
+claw show -p foo/bar
 ```
 
 ### Edit existing command
@@ -81,6 +88,8 @@ claw edit foo/bar
 claw search query
 ```
 
+TODO: Support regex. Maybe just a `ls -R | grep query` if `fzf` isn't installed?
+
 ## Useful tips
 
 ### Save the last run command
@@ -92,7 +101,7 @@ claw create foo/bar "$(echo !!)"
 ### Configure work environment
 
 ```bash
-source $(claw show work/env)
+source $(claw show -p work/env)
 ```
 
 ### Search Claw commands
@@ -104,7 +113,7 @@ Use `hjkl` or arrow keys to navigate the tree. Commands are displayed on the lef
 Hit enter to
 
 * Copy to clipboard
-* `.sh` -> `$ /path/to/script.sh`
+* `.sh -> $ /path/to/script.sh`
 * No file extension: just paste contents into command line
 
 ### Commands with environment variables
