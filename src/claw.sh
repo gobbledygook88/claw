@@ -34,7 +34,29 @@ cmd_version() {
 cmd_usage() {
 	cat <<-EOF
 	Usage:
-		$PROGRAM init
+	    $PROGRAM init [space]
+	        Initialize a new space.
+	    $PROGRAM [ls] [subfol er]
+	        List commands.
+	    $PROGRAM find command-name
+	        List commands that match query (can be a regular expression).
+	    $PROGRAM show [--clip,-c] [--path,-p] command-name
+	        Show existing command and optionally put it on the clipboard.
+	        Can also display the full path to the file.
+	    $PROGRAM create command-name
+	        Insert a new command via the configured editor (${EDITOR:-vi}).
+	    $PROGRAM edit command-name
+	        Edit a command using the configurated editor (${EDITOR:-vi}).
+	    $PROGRAM rm [--recursive,-r] command-name
+	        Remove existing command or directory.
+	    $PROGRAM mv old-path new-path
+	        Renames or moves old-path to new-path.
+	    $PROGRAM cp old-path new-path
+	        Copies old-path to new-path.
+	    $PROGRAM help
+	        Show this text.
+	    $PROGRAM version
+	        Show version information.
 	EOF
 }
 
@@ -81,7 +103,7 @@ case "$1" in
 	version|--version|-v) shift;    cmd_version "$@" ;;
 	show|ls|list) shift;            cmd_show "$@" ;;
 	find|search) shift;             cmd_find "$@" ;;
-	# insert|add) shift;              cmd_insert "$@" ;;
+	# create|insert|add) shift;       cmd_create "$@" ;;
 	# edit) shift;                    cmd_edit "$@" ;;
 	space) shift;                   cmd_space "$@" ;;
 	# delete|rm|remove) shift;        cmd_delete "$@" ;;
