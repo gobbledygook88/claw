@@ -25,7 +25,8 @@ cmd_usage() {
 }
 
 cmd_init() {
-	echo
+	mkdir "$PREFIX"
+	# TODO activate default space
 }
 
 cmd_show() {
