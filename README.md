@@ -18,6 +18,7 @@
     - [Configure work environment](#configure-work-environment)
     - [Search Claw commands](#search-claw-commands)
     - [Scan through Claw commands (interactively)](#scan-through-claw-commands-interactively)
+- [Spaces](#spaces)
 - [Git support](#git-support)
 - [Inspiration](#inspiration)
 - [TODO](#todo)
@@ -27,6 +28,8 @@
 A simple way to save commonly run commands or snippets.
 
 There is the ability to share and collaborate on commands, e.g. in a work environment. This is done via `git` and the concept of _spaces_ which we will go into detail later.
+
+This tool is intended to work alongside dotfiles e.g. `.bash_aliases` or `.functions` but is slightly more portable if `rsync` isn't preferred.
 
 ### What's in the name?
 
@@ -148,6 +151,14 @@ Environment variables are detected. If any variable is not defined, then we disp
 
 If using `claw create` inline, be sure to escape `$` symbols.
 
+## Spaces
+
+Spaces are a simple way to organise commands and scripts for different environments. You may have multiple projects on the go and each will have its own set of commands to run, e.g. for NodeJS or database administration.
+
+Here is a more illustrative example:
+
+* `
+
 ## Git support
 
 ```bash
@@ -167,6 +178,8 @@ By default, this will clone the remote repository into `$HOME/.claw/repo/`. To p
 ```bash
 claw git clone git@url/to/remote:repo.git another_name
 ```
+
+Any extra git repositories are automatically made into a space. On the other hand, any space can be made into a git repository.
 
 ## Inspiration
 
