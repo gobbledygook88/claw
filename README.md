@@ -8,9 +8,11 @@ There is the ability to share and collaborate on commands, e.g. in a work enviro
 
 This tool is intended to work alongside dotfiles e.g. `.bash_aliases` or `.functions` but is slightly more portable if `rsync` isn't preferred.
 
+Much of the code has been heavily inspired by the wonderful Unix password manager [pass](https://www.passwordstore.org/).
+
 ### What's in the name?
 
-Claw was the name for a similar command-line tool project of mine that never saw it past the design phase. That project may still happen or eventually be merged into this tool. Recycling is cool.
+Claw was the name for a similar command-line tool project of mine that never saw it past the design phase. The current feature-set is just a fraction of what was initially planned. That project may still happen or eventually be merged into this tool. Recycling is cool.
 
 - [Installation](#installation)
     - [Ubuntu](#ubuntu)
@@ -84,8 +86,6 @@ claw create foo/bar
 
 This will create a new file in the currently active space.
 
-TODO: check if path already exists
-
 ### Display saved commands
 
 ```bash
@@ -115,8 +115,6 @@ claw edit foo/bar
 ```
 claw search query
 ```
-
-TODO: Support regex. Maybe just a `find $HOME/.claw -name *query*` if `fzf` isn't installed?
 
 ## Useful tips
 
@@ -156,7 +154,7 @@ Spaces are a simple way to organise commands and scripts for different environme
 
 Here is a more illustrative example:
 
-* `
+* ``
 
 ## Git support
 
@@ -182,14 +180,14 @@ Any extra git repositories are automatically made into a space. On the other han
 
 ## Development
 
-* Clone repo
+* Clone repo: `git clone https://github.com/gobbledygook88/claw.git`
 * `apt install shellcheck` or `brew install shellcheck`
 * `pip install bashate`
 * Run test scripts
 
 ## Inspiration
 
-* `pass`: The Unix Password Store
+* [`pass`](https://www.passwordstore.org/): The Standard Unix Password Store
 * `pgcli`
 
 ## TODO
