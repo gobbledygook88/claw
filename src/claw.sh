@@ -2,9 +2,9 @@
 
 VERSION="v0.0.1"
 PREFIX="${CLAW_DIR:-$HOME/.claw}"
-DEFAULT_SPACE="$PREFIX/${CLAW_DEFAULT_SPACE:=_default}"
+# DEFAULT_SPACE="$PREFIX/${CLAW_DEFAULT_SPACE:-_default}"
 
-GETOPT="getopt"
+# GETOPT="getopt"
 
 die() {
 	echo "$@" >&2
