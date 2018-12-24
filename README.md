@@ -1,12 +1,12 @@
 # CLAW <!-- omit in toc -->
 
-- [Aim](#aim)
+- [Introduction](#introduction)
     - [What's in the name?](#whats-in-the-name)
 - [Installation](#installation)
     - [Linux](#linux)
     - [MacOS](#macos)
-- [Dependencies](#dependencies)
-- [API](#api)
+    - [Dependencies](#dependencies)
+- [Usage](#usage)
     - [Initialise Claw](#initialise-claw)
     - [Display help](#display-help)
     - [Save new command](#save-new-command)
@@ -19,19 +19,18 @@
     - [Search Claw commands](#search-claw-commands)
     - [Scan through Claw commands (interactively)](#scan-through-claw-commands-interactively)
 - [Git support](#git-support)
-    - [Single git repository](#single-git-repository)
 - [Inspiration](#inspiration)
 - [TODO](#todo)
 
-## Aim
+## Introduction
 
 A simple way to save commonly run commands or snippets.
 
-Ability to share and collaborate on commands, e.g. in a work environment.
+There is the ability to share and collaborate on commands, e.g. in a work environment. This is done via `git` and the concept of _spaces_ which we will go into detail later.
 
 ### What's in the name?
 
-Claw is a name for another command-line tool project that never saw it past the design phase. That project may still happen or eventually be merged into this tool. Recycling is cool.
+Claw was the name for a similar command-line tool project of mine that never saw it past the design phase. That project may still happen or eventually be merged into this tool. Recycling is cool.
 
 ## Installation
 
@@ -47,9 +46,9 @@ apt install claw
 brew install claw
 ```
 
-Claw uses what is defined as `$EDITOR` so be sure to configure this.
+Claw uses what is defined as `$EDITOR`, so be sure to configure this.
 
-## Dependencies
+### Dependencies
 
 * `bash`
 * `tree`
@@ -57,15 +56,15 @@ Claw uses what is defined as `$EDITOR` so be sure to configure this.
 * `git` (optional, but recommended)
 * `fzf` (optional, better search functionality)
 
-## API
+## Usage
 
 ### Initialise Claw
 
 ```bash
-claw init
+claw init [dirname]
 ```
 
-Create directory at `$HOME/.claw/_default`.
+By default, a directory at `$HOME/.claw/_default/` will be created. To use another name, or to create another top-level directory, specify a directory name.
 
 ### Display help
 
@@ -78,6 +77,8 @@ claw help
 ```bash
 claw create foo/bar
 ```
+
+This will create a new file in the currently active space.
 
 TODO: check if path already exists
 
@@ -111,7 +112,7 @@ claw edit foo/bar
 claw search query
 ```
 
-TODO: Support regex. Maybe just a `ls -R | grep query` if `fzf` isn't installed?
+TODO: Support regex. Maybe just a `find $HOME/.claw -name *query*` if `fzf` isn't installed?
 
 ## Useful tips
 
@@ -147,16 +148,13 @@ If using `claw create` inline, be sure to escape `$` symbols.
 
 ## Git support
 
-### Single git repository
-
 ```bash
-claw git init
+claw git init [dirname]
 ```
 
-Runs `git init` in `$HOME/.claw/_default/`.
+Runs `git init` in `$HOME/.claw/_default/`. Providing `dirname` will track the given local directory.
 
 To track another repository, run
-
 
 ```bash
 claw git clone git@url/to/remote:repo.git
