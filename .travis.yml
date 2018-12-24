@@ -18,4 +18,4 @@ install:
   - ./.travis/install.sh
 
 script:
-  - bash -c 'shopt -s globstar; shellcheck **/*.sh'
+  - ./tests/staticanalysis.sh
