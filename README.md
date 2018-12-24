@@ -1,5 +1,7 @@
 # CLAW 🦖 <!-- omit in toc -->
 
+[![Build Status](https://travis-ci.org/gobbledygook88/claw.svg?branch=master)](https://travis-ci.org/gobbledygook88/claw)
+
 - [Introduction](#introduction)
     - [What's in the name?](#whats-in-the-name)
 - [Installation](#installation)
