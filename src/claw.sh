@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 VERSION="v0.0.1"
 PREFIX="${CLAW_DIR:-$HOME/.claw}"
 DEFAULT_SPACE="$PREFIX/${CLAW_DEFAULT_SPACE:-_default}"
@@ -21,7 +23,7 @@ set_current_space() {
 	# TODO get new space name from user input
 	local space="foo"
 
-	[[ ! -d "$space" ]] && die "Space not valid"
+	[[ ! -d "$space" ]] && die "Error: Space not valid"
 	echo $space > "$CURRENT_SPACE_FILE"
 }
 
@@ -42,22 +44,22 @@ cmd_init() {
 }
 
 cmd_show() {
-	local current_space=get_current_space()
-	local file="$PREFIX/$CURRENT_SPACE/$1"
+	local current_space=get_current_space
+	local file="$PREFIX/$current_space/$1"
 
-	[[ ! -f $file ]] && die "Path not valid"
+	[[ ! -f $file ]] && die "Error: Path not valid"
 
 	cat "$file"
 
 	# TODO -c : copy contents to clipboard
-	cat "$file" | pbcopy
+	pbcopy < "$file"
 
 	# TODO -p : print out full, absolute filepath
 	echo "$file"
 }
 
 cmd_find() {
-	[[ $# -eq 0 ]] && die "Usage: $PROGRAM $COMMAND command-names..."
+	[[ $# -ne 1 ]] && die "Usage: $PROGRAM $COMMAND command-names..."
 	# TODO support -a to search all spaces
 	echo
 }
