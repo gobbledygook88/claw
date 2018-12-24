@@ -2,10 +2,18 @@
 
 [![Build Status](https://travis-ci.org/gobbledygook88/claw.svg?branch=master)](https://travis-ci.org/gobbledygook88/claw)
 
-- [Introduction](#introduction)
-    - [What's in the name?](#whats-in-the-name)
+A simple way to save commonly run commands or snippets.
+
+There is the ability to share and collaborate on commands, e.g. in a work environment. This is done via `git` and the concept of _spaces_ which we will go into detail later.
+
+This tool is intended to work alongside dotfiles e.g. `.bash_aliases` or `.functions` but is slightly more portable if `rsync` isn't preferred.
+
+### What's in the name?
+
+Claw was the name for a similar command-line tool project of mine that never saw it past the design phase. That project may still happen or eventually be merged into this tool. Recycling is cool.
+
 - [Installation](#installation)
-    - [Linux](#linux)
+    - [Ubuntu](#ubuntu)
     - [MacOS](#macos)
     - [Dependencies](#dependencies)
 - [Usage](#usage)
@@ -22,24 +30,13 @@
     - [Scan through Claw commands (interactively)](#scan-through-claw-commands-interactively)
 - [Spaces](#spaces)
 - [Git support](#git-support)
+- [Development](#development)
 - [Inspiration](#inspiration)
 - [TODO](#todo)
 
-## Introduction
-
-A simple way to save commonly run commands or snippets.
-
-There is the ability to share and collaborate on commands, e.g. in a work environment. This is done via `git` and the concept of _spaces_ which we will go into detail later.
-
-This tool is intended to work alongside dotfiles e.g. `.bash_aliases` or `.functions` but is slightly more portable if `rsync` isn't preferred.
-
-### What's in the name?
-
-Claw was the name for a similar command-line tool project of mine that never saw it past the design phase. That project may still happen or eventually be merged into this tool. Recycling is cool.
-
 ## Installation
 
-### Linux
+### Ubuntu
 
 ```bash
 apt install claw
@@ -59,7 +56,7 @@ Claw uses what is defined in `$EDITOR`, so be sure to configure this.
 * `tree`
 * `xclip`
 * `git` (optional, but recommended)
-* `fzf` (optional, better search functionality)
+* `fzf` (optional, for better search functionality)
 
 ## Usage
 
@@ -182,6 +179,13 @@ claw git clone git@url/to/remote:repo.git another_name
 ```
 
 Any extra git repositories are automatically made into a space. On the other hand, any space can be made into a git repository.
+
+## Development
+
+* Clone repo
+* `apt install shellcheck` or `brew install shellcheck`
+* `pip install bashate`
+* Run test scripts
 
 ## Inspiration
 
