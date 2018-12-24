@@ -2,7 +2,8 @@
 
 VERSION="v0.0.1"
 PREFIX="${CLAW_DIR:-$HOME/.claw}"
-# DEFAULT_SPACE="$PREFIX/${CLAW_DEFAULT_SPACE:-_default}"
+DEFAULT_SPACE="$PREFIX/${CLAW_DEFAULT_SPACE:-_default}"
+CURRENT_SPACE_FILE="$PREFIX/.current_space"
 
 # GETOPT="getopt"
 
@@ -11,13 +12,24 @@ die() {
 	exit 1
 }
 
+get_current_space() {
+	read -r line < "$CURRENT_SPACE_FILE"
+	echo "$line"
+}
+
+set_current_space() {
+	# TODO get new space name from user input
+	local space="foo"
+
+	[[ ! -d "$space" ]] && die "Space not valid"
+	echo $space > "$CURRENT_SPACE_FILE"
+}
+
 cmd_version() {
 	echo "$VERSION"
 }
 
 cmd_usage() {
-	cmd_version
-	echo
 	cat <<-EOF
 	Usage:
 		$PROGRAM init
@@ -25,12 +37,23 @@ cmd_usage() {
 }
 
 cmd_init() {
-	mkdir "$PREFIX"
+	mkdir -p "$DEFAULT_SPACE"
 	# TODO activate default space
 }
 
 cmd_show() {
-	echo
+	local current_space=get_current_space()
+	local file="$PREFIX/$CURRENT_SPACE/$1"
+
+	[[ ! -f $file ]] && die "Path not valid"
+
+	cat "$file"
+
+	# TODO -c : copy contents to clipboard
+	cat "$file" | pbcopy
+
+	# TODO -p : print out full, absolute filepath
+	echo "$file"
 }
 
 cmd_find() {
@@ -39,16 +62,12 @@ cmd_find() {
 	echo
 }
 
-cmd_current_space() {
-	echo
-}
+cmd_space() {
+	# claw space set <space>
 
-cmd_set_current_space() {
-	echo
-}
-
-cmd_spaces() {
-	echo
+	# No extra arguments, or ls/list/show
+	# TODO get current space and place asterisk
+	find "$PREFIX" -type d -depth 1 -not -name ".*" -exec basename {} +
 }
 
 PROGRAM="${0##*/}"
@@ -60,10 +79,9 @@ case "$1" in
 	version|--version|-v) shift;    cmd_version "$@" ;;
 	show|ls|list) shift;            cmd_show "$@" ;;
 	find|search) shift;             cmd_find "$@" ;;
-	# grep) shift;                    cmd_grep "$@" ;;
-	insert|add) shift;              cmd_insert "$@" ;;
-	edit) shift;                    cmd_edit "$@" ;;
-	# generate) shift;                cmd_generate "$@" ;;
+	# insert|add) shift;              cmd_insert "$@" ;;
+	# edit) shift;                    cmd_edit "$@" ;;
+	space) shift;                   cmd_space "$@" ;;
 	# delete|rm|remove) shift;        cmd_delete "$@" ;;
 	# rename|mv) shift;               cmd_copy_move "move" "$@" ;;
 	# copy|cp) shift;                 cmd_copy_move "copy" "$@" ;;
