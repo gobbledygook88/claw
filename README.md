@@ -1,4 +1,4 @@
-# CLAW <!-- omit in toc -->
+# CLAW 🦖 <!-- omit in toc -->
 
 - [Introduction](#introduction)
     - [What's in the name?](#whats-in-the-name)
@@ -46,7 +46,7 @@ apt install claw
 brew install claw
 ```
 
-Claw uses what is defined as `$EDITOR`, so be sure to configure this.
+Claw uses what is defined in `$EDITOR`, so be sure to configure this.
 
 ### Dependencies
 
@@ -64,9 +64,11 @@ Claw uses what is defined as `$EDITOR`, so be sure to configure this.
 claw init [dirname]
 ```
 
-By default, a directory at `$HOME/.claw/_default/` will be created. To use another name, or to create another top-level directory, specify a directory name.
+By default, a directory at `$HOME/.claw/_default/` will be created. To use another name, or to create another space, specify a directory name.
 
 ### Display help
+
+For full usage information, run
 
 ```bash
 claw help
