@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 unset CLAW_DIR
 unset CLAW_DEFAULT_SPACE

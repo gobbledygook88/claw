@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # OS specific dependencies
 if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
