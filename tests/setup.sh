@@ -16,3 +16,9 @@ if [[ ! -d "$CLAW_DIR" ]]; then
     echo "Could not create $CLAW_DIR"
     exit 1
 fi
+
+CLAW="$TEST_HOME/../src/claw.sh"
+if [[ ! -e "$CLAW" ]]; then
+    echo "Could not find claw.sh"
+    exit 1
+fi
