@@ -184,6 +184,8 @@ Any extra git repositories are automatically made into a space. On the other han
 * `apt install shellcheck` or `brew install shellcheck`
 * `pip install bashate`
 * Run test scripts
+    * `./tests/staticanalysis.sh`
+    * `./tests/run_all.sh`
 
 ## Inspiration
 
