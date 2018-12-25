@@ -4,7 +4,7 @@ set -euo pipefail
 
 VERSION="v0.0.1"
 PREFIX="${CLAW_DIR:-$HOME/.claw}"
-DEFAULT_SPACE="$PREFIX/${CLAW_DEFAULT_SPACE:-_default}"
+DEFAULT_SPACE="${CLAW_DEFAULT_SPACE:-_default}"
 CURRENT_SPACE_FILE="$PREFIX/.current_space"
 
 # GETOPT="getopt"
@@ -20,11 +20,10 @@ get_current_space() {
 }
 
 set_current_space() {
-	# TODO get new space name from user input
-	local space="foo"
+	local space=$1
 
 	[[ ! -d "$space" ]] && die "Error: Space not valid"
-	echo $space > "$CURRENT_SPACE_FILE"
+	echo "$space" > "$CURRENT_SPACE_FILE"
 }
 
 cmd_version() {
@@ -38,7 +37,7 @@ cmd_usage() {
 	        Initialize a new space.
 	    $PROGRAM [ls] [subfol er]
 	        List commands.
-	    $PROGRAM find command-name
+	    $PROGRAM search command-name
 	        List commands that match query (can be a regular expression).
 	    $PROGRAM show [--clip,-c] [--path,-p] command-name
 	        Show existing command and optionally put it on the clipboard.
@@ -61,8 +60,9 @@ cmd_usage() {
 }
 
 cmd_init() {
-	mkdir -p "$DEFAULT_SPACE"
-	# TODO activate default space
+	local name=${1:-$DEFAULT_SPACE}
+	mkdir -p "$PREFIX/$name"
+	set_current_space "$name"
 }
 
 cmd_show() {
@@ -83,7 +83,9 @@ cmd_show() {
 cmd_find() {
 	[[ $# -ne 1 ]] && die "Usage: $PROGRAM $COMMAND command-names..."
 	# TODO support -a to search all spaces
-	echo
+	local current_space=get_current_space
+	local query=$1
+	find "$PREFIX/$current_space" -name "$query"
 }
 
 cmd_space() {
