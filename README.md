@@ -14,6 +14,8 @@ Much of the code has been heavily inspired by the wonderful Unix password manage
 
 Claw was the name for a similar command-line tool project of mine that never saw it past the design phase. The current feature-set is just a fraction of what was initially planned. That project may still happen or eventually be merged into this tool. Recycling is cool.
 
+## Table of contents <!-- omit in toc -->
+
 - [Installation](#installation)
     - [Ubuntu](#ubuntu)
     - [MacOS](#macos)
