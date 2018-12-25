@@ -8,7 +8,7 @@ find "$DIR/.." \
     -name "*.sh" \
     -not -name "sharness.sh" \
     -not -name "aggregate-results.sh" \
-    -exec shellcheck {} +
+    -exec shellcheck -x {} +
 find "$DIR/.." \
     -name "*.sh" \
     -not -name "sharness.sh" \
