@@ -8,7 +8,7 @@ There is the ability to share and collaborate on commands, e.g. in a work enviro
 
 This tool is intended to work alongside dotfiles e.g. `.bash_aliases` or `.functions` but is slightly more portable if `rsync` isn't preferred.
 
-Much of the code has been heavily inspired by the wonderful Unix password manager [pass](https://www.passwordstore.org/).
+Much of the code has been __heavily__ inspired by the wonderful Unix password manager [pass](https://www.passwordstore.org/). At its core, claw is basically `pass` without GPG.
 
 ### What's in the name?
 
@@ -34,6 +34,7 @@ Claw was the name for a similar command-line tool project of mine that never saw
     - [Scan through Claw commands (interactively)](#scan-through-claw-commands-interactively)
 - [Spaces](#spaces)
 - [Git support](#git-support)
+- [Environment variables](#environment-variables)
 - [Development](#development)
 - [Inspiration](#inspiration)
 - [TODO](#todo)
@@ -179,6 +180,13 @@ claw git clone git@url/to/remote:repo.git another_name
 ```
 
 Any extra git repositories are automatically made into a space. On the other hand, any space can be made into a git repository.
+
+## Environment variables
+
+The following environment variables are available to use:
+
+* `CLAW_DIR`: The base directory to store all claw related files. Default: `$HOME/.claw/`
+* `CLAW_DEFAULT_SPACE`: Name of the default space. Default: `_default`.
 
 ## Development
 
