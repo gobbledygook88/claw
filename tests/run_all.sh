@@ -8,8 +8,7 @@ NUM_TEST_FILES="$(echo "$TEST_FILES"  | tr ' ' '\n' | wc -l | awk '{print $1}')"
 
 echo "Found $NUM_TEST_FILES test files."
 
-while read -r file ;
-do
+while read -r file ; do
     echo "========== $file =========="
     "./$file"
 done < <(echo "$TEST_FILES" | tr ' ' '\n')

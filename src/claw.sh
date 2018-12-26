@@ -62,8 +62,7 @@ cmd_usage() {
 
 cmd_init() {
 	local name="${1:-$DEFAULT_SPACE}"
-	if [[ -d "$PREFIX/$name" ]]
-	then
+	if [[ -d "$PREFIX/$name" ]] ; then
 		echo "Space $name already exists. Setting $name to be the current space."
 	else
 		mkdir -p "$PREFIX/$name"
