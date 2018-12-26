@@ -21,7 +21,6 @@ get_current_space() {
 
 set_current_space() {
 	local space="$1"
-	echo "$space"
 
 	[[ ! -d "$PREFIX/$space" ]] && die "Error: Space not valid"
 	echo "$space" > "$CURRENT_SPACE_FILE"
@@ -62,28 +61,31 @@ cmd_usage() {
 
 cmd_init() {
 	local name="${1:-$DEFAULT_SPACE}"
+
 	if [[ -d "$PREFIX/$name" ]] ; then
 		echo "Space $name already exists. Setting $name to be the current space."
 	else
 		mkdir -p "$PREFIX/$name"
 		echo "Created new space $name."
 	fi
+
 	set_current_space "$name"
 }
 
 cmd_show() {
-	local current_space=get_current_space
+	local current_space
+	current_space=$(get_current_space)
 	local file="$PREFIX/$current_space/$1"
 
-	[[ ! -f $file ]] && die "Error: Path not valid"
+	[[ ! -f "$file" ]] && die "Error: Path not valid"
 
 	cat "$file"
 
 	# TODO -c : copy contents to clipboard
-	pbcopy < "$file"
+	# pbcopy < "$file"
 
 	# TODO -p : print out full, absolute filepath
-	echo "$file"
+	# echo "$file"
 }
 
 cmd_find() {
