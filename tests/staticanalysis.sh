@@ -7,7 +7,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 # Run shellcheck on only src directory
 find "$DIR/../src" \
     -name "*.sh" \
-    -exec shellcheck -x {} +
+    -exec shellcheck {} +
 
 # Run bashate on all shell scripts (including tests)
 find "$DIR/.." \
