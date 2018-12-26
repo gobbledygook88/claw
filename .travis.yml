@@ -19,3 +19,4 @@ install:
 
 script:
   - ./tests/staticanalysis.sh
+  - ./tests/run_all.sh
