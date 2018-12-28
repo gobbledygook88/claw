@@ -7,7 +7,12 @@ PREFIX="${CLAW_DIR:-$HOME/.claw}"
 DEFAULT_SPACE="${CLAW_DEFAULT_SPACE:-_default}"
 CURRENT_SPACE_FILE="$PREFIX/.current_space"
 
-# GETOPT="getopt"
+GETOPT="getopt"
+
+PLATFORM=$(uname | cut -d _ -f 1 | tr '[:upper:]' '[:lower:]')
+if [[ "$PLATFORM" == "darwin" ]] ; then
+	GETOPT="$(brew --prefix gnu-getopt 2>/dev/null || { command -v port &>/dev/null && echo /opt/local; } || echo /usr/local)/bin/getopt"
+fi
 
 die() {
 	echo "$@" >&2
@@ -73,19 +78,33 @@ cmd_init() {
 }
 
 cmd_show() {
-	local current_space
-	current_space=$(get_current_space)
-	local file="$PREFIX/$current_space/$1"
+	local current_space copy=0 path=0 err=0
 
+	opts="$($GETOPT -o cp -l copy,path -n "$PROGRAM" -- "$@")"
+	err=$?
+	eval set -- "$opts"
+	while true; do
+		case $1 in
+			-c|--copy) copy=1; shift ;;
+			-p|--path) path=1; shift ;;
+			--) shift; break ;;
+		esac
+	done
+	[[ $err -ne 0 || $# -ne 1 ]] && die "Usage: $PROGRAM $COMMAND [--copy,-c] [--path,-p] command-name"
+
+	current_space=$(get_current_space)
+
+	local file="$PREFIX/$current_space/$1"
 	[[ ! -f "$file" ]] && die "Error: Path not valid"
 
+	# Print out absolute path to command file
+	[[ $path -eq 1 ]] && echo "$file" && exit
+
+	# Copy contents of command file to clipboard
+	[[ $copy -eq 1 ]] && pbcopy < "$file" && exit
+
+	# Otherwise, just print out the contents
 	cat "$file"
-
-	# TODO -c : copy contents to clipboard
-	# pbcopy < "$file"
-
-	# TODO -p : print out full, absolute filepath
-	# echo "$file"
 }
 
 cmd_find() {

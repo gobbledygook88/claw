@@ -32,6 +32,7 @@ test_expect_success 'Print out multi-line saved command (in current space)' '
     [[ $("$CLAW" show deeply/nested/multi) == "$COMMAND_MULTI" ]]
 '
 
+# TODO
 test_expect_success 'Print out saved command (in another space)' '
 
 '
@@ -41,15 +42,21 @@ test_expect_success 'Error when command path does not exist' '
 '
 
 test_expect_success 'Copy command contents to clipboard (single line)' '
-
+    "$CLAW" show -c deeply/nested/single &&
+    [[ $(pbpaste) == "$COMMAND_SINGLE" ]]
 '
 
 test_expect_success 'Copy command contents to clipboard (multi-line)' '
-
+    "$CLAW" show -c deeply/nested/multi &&
+    [[ $(pbpaste) == "$COMMAND_MULTI" ]]
 '
 
-test_expect_success 'Print out full filepath' '
+test_expect_success 'Print out full filepath (single line)' '
+    [[ $("$CLAW" show -p deeply/nested/single) == "$COMMAND_SINGLE_PATH" ]]
+'
 
+test_expect_success 'Print out full filepath (multi-line)' '
+    [[ $("$CLAW" show -p deeply/nested/multi) == "$COMMAND_MULTI_PATH" ]]
 '
 
 test_done
