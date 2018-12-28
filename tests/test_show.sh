@@ -43,12 +43,12 @@ test_expect_success 'Error when command path does not exist' '
 
 test_expect_success 'Copy command contents to clipboard (single line)' '
     "$CLAW" show -c deeply/nested/single &&
-    [[ $(pbpaste) == "$COMMAND_SINGLE" ]]
+    [[ $($CLIPBOARD) == "$COMMAND_SINGLE" ]]
 '
 
 test_expect_success 'Copy command contents to clipboard (multi-line)' '
     "$CLAW" show -c deeply/nested/multi &&
-    [[ $(pbpaste) == "$COMMAND_MULTI" ]]
+    [[ $($CLIPBOARD) == "$COMMAND_MULTI" ]]
 '
 
 test_expect_success 'Print out full filepath (single line)' '

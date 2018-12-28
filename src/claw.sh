@@ -7,10 +7,12 @@ PREFIX="${CLAW_DIR:-$HOME/.claw}"
 DEFAULT_SPACE="${CLAW_DEFAULT_SPACE:-_default}"
 CURRENT_SPACE_FILE="$PREFIX/.current_space"
 
+CLIPBOARD="xclip -selection -clipboard"
 GETOPT="getopt"
 
 PLATFORM=$(uname | cut -d _ -f 1 | tr '[:upper:]' '[:lower:]')
 if [[ "$PLATFORM" == "darwin" ]] ; then
+	CLIPBOARD="pbcopy"
 	GETOPT="$(brew --prefix gnu-getopt 2>/dev/null || { command -v port &>/dev/null && echo /opt/local; } || echo /usr/local)/bin/getopt"
 fi
 
@@ -101,7 +103,7 @@ cmd_show() {
 	[[ $path -eq 1 ]] && echo "$file" && exit
 
 	# Copy contents of command file to clipboard
-	[[ $copy -eq 1 ]] && pbcopy < "$file" && exit
+	[[ $copy -eq 1 ]] && "$CLIPBOARD" < "$file" && exit
 
 	# Otherwise, just print out the contents
 	cat "$file"

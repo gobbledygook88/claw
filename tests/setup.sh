@@ -22,3 +22,9 @@ if [[ ! -e "$CLAW" ]]; then
     echo "Could not find claw.sh"
     exit 1
 fi
+
+if command -v xclip ; then
+    CLIPBOARD="xclip -o -selection -clipboard"
+else
+    CLIPBOARD="pbpaste"
+fi
