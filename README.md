@@ -60,6 +60,7 @@ Claw uses what is defined in `$EDITOR`, so be sure to configure this.
 * `bash`
 * `tree`
 * `xclip`
+* `gnu-getopt` (if on MacOS)
 * `git` (optional, but recommended)
 * `fzf` (optional, for better search functionality)
 
