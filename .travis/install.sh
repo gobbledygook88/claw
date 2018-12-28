@@ -10,4 +10,5 @@ else
 fi
 
 # Common dependencies
+sudo pip install --upgrade pip
 sudo pip install bashate
