@@ -6,7 +6,7 @@ if [[ $TRAVIS_OS_NAME == 'osx' ]]; then
 else
     sudo apt-add-repository "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse"
     sudo apt-get -qq update
-    sudo apt-get install shellcheck
+    sudo apt-get install shellcheck xclip
 fi
 
 # Common dependencies
