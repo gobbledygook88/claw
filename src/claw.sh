@@ -110,11 +110,18 @@ cmd_show() {
 }
 
 cmd_find() {
+	local current_space query
+
 	[[ $# -ne 1 ]] && die "Usage: $PROGRAM $COMMAND command-names..."
 	# TODO support -a to search all spaces
-	local current_space=get_current_space
-	local query=$1
-	find "$PREFIX/$current_space" -name "$query"
+
+	current_space=$(get_current_space)
+	query=$1
+
+	# Remove the prefix from matching paths
+	while read -r path; do
+		echo "${path#"$PREFIX"/$current_space/}" ;
+	done < <(find "$PREFIX/$current_space" -name "*$query*")
 }
 
 cmd_space() {
